@@ -4,4 +4,17 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Common.t4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="cbus-4.0-Rev-8d-Guide-6b-opcodes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="cbus-4.0-Rev-8j-Guide-6c-opcodes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
