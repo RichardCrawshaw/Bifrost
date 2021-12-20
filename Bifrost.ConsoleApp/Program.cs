@@ -8,7 +8,7 @@ namespace Bifrost.ConsoleApp
         {
             Console.WriteLine("Hello World!");
             var loader = new Loader("cbus-4.0-Rev-8d-Guide-6b-opcodes.txt");
-            loader.Load();
+            loader.LoadFile();
             var builder = new Builder(loader);
             builder.Build();
 

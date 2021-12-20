@@ -17,9 +17,9 @@ namespace Bifrost
         public FileCommentBlock FileCommentBlock { get; private set; }
         public HistoryBlock HistoryBlock { get; private set; }
         public LicenceBlock LicenceBlock { get; private set; }
-        public List<OpCodeBlock> OpCodeBlocks { get; } = new();
+        public List<OpCodeBlock> OpCodeBlocks { get; } = new List<OpCodeBlock>();
 
-        public List<int> OpCodeBaseAbstractClassSuffixes { get; } = new();
+        public List<int> OpCodeBaseAbstractClassSuffixes { get; } = new List<int>();
 
         public string Version { get; private set; }
 

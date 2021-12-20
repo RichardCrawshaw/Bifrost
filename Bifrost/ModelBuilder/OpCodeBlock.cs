@@ -24,9 +24,9 @@ namespace Bifrost.Model
 
         public string ToStringText { get; private set; }
 
-        public List<string> Comments { get; } = new();
+        public List<string> Comments { get; } = new List<string>();
 
-        public List<OpCodeProperty> Properties { get; } = new();
+        public List<OpCodeProperty> Properties { get; } = new List<OpCodeProperty>();
 
         public string BaseClassName => $"OpCodeData{this.Value >> 5}";
 
@@ -111,14 +111,14 @@ namespace Bifrost.Model
 
         private static string GetFormat(OpCodeProperty property)
         {
-            return property.Format switch
+            switch (property.Format)
             {
-                "char" => string.Empty,
-                "decimal" => string.Empty,
-                "Enum" => ":F",
-                "hex" => ":X2",
-                _ => string.Empty,
-            };
+                case "char": return string.Empty;
+                case "decimal":return string.Empty;
+                case "Enum":return ":F";
+                case "hex": return ":X2";
+                default: return string.Empty;
+            }
         }
 
         private static string GetValue(OpCodeProperty property)

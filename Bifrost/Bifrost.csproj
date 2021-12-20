@@ -1,20 +1,78 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F9A16678-9033-45EC-A0FE-0FA615434D44}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BifrostFW</RootNamespace>
+    <AssemblyName>BifrostFW</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
-    <None Remove="Common.t4" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Update="cbus-4.0-Rev-8d-Guide-6b-opcodes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="cbus-4.0-Rev-8j-Guide-6c-opcodes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Compile Include="Code\Builder.cs" />
+    <Compile Include="Code\Loader.cs" />
+    <Compile Include="ModelBuilder\FileCommentBlock.cs" />
+    <Compile Include="ModelBuilder\HistoryBlock.cs" />
+    <Compile Include="ModelBuilder\LicenceBlock.cs" />
+    <Compile Include="ModelBuilder\OpCodeBlock.cs" />
+    <Compile Include="ModelBuilder\OpCodeProperty.cs" />
+    <Compile Include="ModelLoader\BlankLine.cs" />
+    <Compile Include="ModelLoader\CommentLine.cs" />
+    <Compile Include="ModelLoader\EnumerationLine.cs" />
+    <Compile Include="ModelLoader\FileCommentLine.cs" />
+    <Compile Include="ModelLoader\HistoryLine.cs" />
+    <Compile Include="ModelLoader\LicenceLine.cs" />
+    <Compile Include="ModelLoader\Line.cs" />
+    <Compile Include="ModelLoader\OpCodeCommentLine.cs" />
+    <Compile Include="ModelLoader\OpCodeDescriptionLine.cs" />
+    <Compile Include="ModelLoader\OpCodeLine.cs" />
+    <Compile Include="ModelLoader\OpCodePropertyLine.cs" />
+    <Compile Include="ModelLoader\OpCodeReservedLine.cs" />
+    <Compile Include="ModelLoader\OpCodeToStringLine.cs" />
+    <Compile Include="ModelLoader\OpCodeValueLine.cs" />
+    <Compile Include="ModelLoader\PropertyLine.cs" />
+    <Compile Include="ModelLoader\VersionLine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Include="cbus-4.0-Rev-8d-Guide-6b-opcodes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cbus-4.0-Rev-8j-Guide-6c-opcodes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
