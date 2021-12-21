@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace Bifrost.ConsoleApp
+namespace Bifrost
 {
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var loader = new Loader("cbus-4.0-Rev-8d-Guide-6b-opcodes.txt");
-            loader.LoadFile();
+            var loader = new Loader("cbus-4.0-Rev-8d-Guide-6b-opcodes");
+            loader.LoadResource();
             var builder = new Builder(loader);
             builder.Build();
 

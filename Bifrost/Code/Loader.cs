@@ -68,10 +68,14 @@ namespace Bifrost
         /// <exception cref="InvalidOperationException">If the resource does not exist.</exception>
         public void LoadResource()
         {
-            if (!resourceNames.Value.Contains(this.name))
+            var name = this.name;
+            if (!name.StartsWith("Bifrost.")) name = "Bifrost." + name;
+            if (!name.EndsWith(".txt")) name += ".txt";
+
+            if (!resourceNames.Value.Contains(name))
                 throw new InvalidOperationException($"'{this.name}' is not a known resource.");
 
-            var text = ReadEmbeddedFile(this.name);
+            var text = ReadEmbeddedFile(name);
             var lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             Load(lines);

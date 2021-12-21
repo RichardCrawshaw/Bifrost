@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net48</TargetFramework>
-    <StartupObject>Bifrost.ConsoleApp.Program</StartupObject>
+    <StartupObject>Bifrost.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
