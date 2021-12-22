@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -29,6 +30,15 @@ namespace Bifrost.Model
         public List<OpCodeProperty> Properties { get; } = new List<OpCodeProperty>();
 
         public string BaseClassName => $"OpCodeData{this.Value >> 5}";
+
+        public string ClassName =>
+            string.Concat(
+                this.Name.Split(" -()".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                    .Select(n => string.Concat(
+                        n.Substring(0, 1).ToUpper(),
+                        n.Length > 1 ? n.Substring(1).ToLower() : string.Empty)));
+
+        public string InterfaceName => $"I{this.ClassName}";
 
         #endregion
 
