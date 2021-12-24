@@ -1,0 +1,35 @@
+name: Publish Packages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout code
+    
+    - name: Setup MSBuild Path
+      uses: microsoft/setup-msbuild@v1
+      
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+      
+    - name: Navigate to Workspace
+      run: cd $GITHUB_WORKSPACE
+
+    - name: Restore NuGet Packages
+      run: nuget restore Bifrost.sln
+
+    - name: Build Solution
+      run: |
+          msbuild.exe Bifrost.sln /p:platform="Any CPU" /p:configuration="Release"
+    
+    - name: Publish Bifrost
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+          PROJECT_FILE_PATH: Bifrost/Bifrost.csproj
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
