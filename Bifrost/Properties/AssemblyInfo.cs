@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BifrostFW")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Bifrost - CBUS T4 templage and OpCode definitions")]
+[assembly: AssemblyDescription("CBUS Op-Code Definitions and T4 template data management")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("BifrostFW")]
-[assembly: AssemblyCopyright("Copyright © HP 2021")]
+[assembly: AssemblyCompany("Crowswood")]
+[assembly: AssemblyProduct("Bifrost")]
+[assembly: AssemblyCopyright("Copyright © Richard Crawshaw 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyFileVersion("0.9.0.0")]
