@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Bifrost.Model
+namespace CBUS.Bifrost.Model
 {
     public class OpCodeBlock
     {
@@ -12,6 +12,12 @@ namespace Bifrost.Model
         //# "opcode",Value (hex),"property",Source,Name
         //# "opcode",Value (hex),"tostring",Format-string
         //# "opcode",Value (hex),"comment",Text
+
+        #region Fields
+
+        private readonly Lazy<string> className;
+
+        #endregion
 
         #region Properties
 
@@ -31,12 +37,7 @@ namespace Bifrost.Model
 
         public string BaseClassName => $"OpCodeData{this.Value >> 5}";
 
-        public string ClassName =>
-            string.Concat(
-                this.Name.Split(" -()".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
-                    .Select(n => string.Concat(
-                        n.Substring(0, 1).ToUpper(),
-                        n.Length > 1 ? n.Substring(1).ToLower() : string.Empty)));
+        public string ClassName => this.className.Value;
 
         public string InterfaceName => $"I{this.ClassName}";
 
@@ -44,10 +45,21 @@ namespace Bifrost.Model
 
         #region Constructors
 
-        private OpCodeBlock(byte value, List<OpCodeLine> opCodeLines, List<PropertyLine> propertyLines)
+        private OpCodeBlock()
         {
-            this.Value = value;
+            this.className = new Lazy<string>(() =>
+                string.Concat(
+                    this.Name.Split(" -()".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                        .Select(n => string.Concat(
+                            n.Substring(0, 1).ToUpper(),
+                            n.Length > 1 ? n.Substring(1).ToLower() : string.Empty))));
+        }
 
+        private OpCodeBlock(byte value) : this() => this.Value = value;
+
+        private OpCodeBlock(byte value, List<OpCodeLine> opCodeLines, List<PropertyLine> propertyLines)
+            : this(value)
+        {
             var opCodeValueLine =
                 opCodeLines
                     .Where(n => n.Value == value)

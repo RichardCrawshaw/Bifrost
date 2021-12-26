@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Bifrost.Model
+namespace CBUS.Bifrost.Model
 {
     public class HistoryBlock
     {

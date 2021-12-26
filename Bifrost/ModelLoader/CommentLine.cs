@@ -1,4 +1,4 @@
-﻿namespace Bifrost.Model
+﻿namespace CBUS.Bifrost.Model
 {
     public class CommentLine : Line
     {

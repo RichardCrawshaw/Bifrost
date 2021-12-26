@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Bifrost.Model
+namespace CBUS.Bifrost.Model
 {
     public class LicenceLine : Line
     {

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Bifrost.Model;
+using CBUS.Bifrost.Model;
 
-namespace Bifrost
+namespace CBUS.Bifrost
 {
     public class Loader
 	{
         #region Fields
 
-        private static Lazy<List<string>> resourceNames=
+        private static readonly Lazy<List<string>> resourceNames=
             new Lazy<List<string>>(() => GetEmbeddedResourceNames());
 
         private readonly string name;

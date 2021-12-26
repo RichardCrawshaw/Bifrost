@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bifrost.Model;
+using CBUS.Bifrost.Model;
 
-namespace Bifrost
+namespace CBUS.Bifrost
 {
     public class Builder
     {

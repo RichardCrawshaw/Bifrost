@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Bifrost
+namespace CBUS.Bifrost
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
             var loader = new Loader("cbus-4.0-Rev-8d-Guide-6b-opcodes");

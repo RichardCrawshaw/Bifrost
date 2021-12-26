@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Bifrost.Model
+namespace CBUS.Bifrost.Model
 {
     public class EnumerationLine : Line
     {

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 
-namespace Bifrost.Model
+namespace CBUS.Bifrost.Model
 {
     public abstract class OpCodeLine : Line
     {
