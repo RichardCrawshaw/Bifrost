@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bifrost - CBUS T4 templage and OpCode definitions")]
+[assembly: AssemblyTitle("Bifrost - CBUS T4 template and OpCode definitions")]
 [assembly: AssemblyDescription("CBUS Op-Code Definitions and T4 template data management")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Crowswood")]
