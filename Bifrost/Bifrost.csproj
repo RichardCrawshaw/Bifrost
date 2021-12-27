@@ -11,8 +11,8 @@
     <ProjectGuid>{F9A16678-9033-45EC-A0FE-0FA615434D44}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bifrost</RootNamespace>
-    <AssemblyName>Bifrost</AssemblyName>
+    <RootNamespace>CBUS.Bifrost</RootNamespace>
+    <AssemblyName>CBUS.Bifrost</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
