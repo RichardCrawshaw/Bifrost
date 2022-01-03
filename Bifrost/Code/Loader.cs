@@ -69,7 +69,7 @@ namespace CBUS.Bifrost
         public void LoadResource()
         {
             var name = this.name;
-            if (!name.StartsWith("Bifrost.")) name = "Bifrost." + name;
+            if (!name.StartsWith("CBUS.Bifrost.")) name = "CBUS.Bifrost." + name;
             if (!name.EndsWith(".txt")) name += ".txt";
 
             if (!resourceNames.Value.Contains(name))
