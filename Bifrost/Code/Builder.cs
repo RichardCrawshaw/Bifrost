@@ -18,6 +18,7 @@ namespace CBUS.Bifrost
         public HistoryBlock HistoryBlock { get; private set; }
         public LicenceBlock LicenceBlock { get; private set; }
         public List<OpCodeBlock> OpCodeBlocks { get; } = new List<OpCodeBlock>();
+        public List<ResponseBlock> ResponseBlocks { get; } = new List<ResponseBlock>();
 
         public List<int> OpCodeBaseAbstractClassSuffixes { get; } = new List<int>();
 
@@ -48,6 +49,11 @@ namespace CBUS.Bifrost
                 var opCodeBlock = OpCodeBlock.Create(value, this.loader.OpCodeLines, this.loader.PropertyLines);
                 this.OpCodeBlocks.Add(opCodeBlock);
             }
+
+            this.ResponseBlocks.Clear();
+            this.ResponseBlocks.AddRange(
+                this.loader.ResponseLines
+                    .Select(n => ResponseBlock.Create(n)));
 
             this.OpCodeBaseAbstractClassSuffixes.Clear();
             this.OpCodeBaseAbstractClassSuffixes.AddRange(

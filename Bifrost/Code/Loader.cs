@@ -28,6 +28,7 @@ namespace CBUS.Bifrost
         public List<LicenceLine> LicenceLines { get; } = new List<LicenceLine>();
         public List<OpCodeLine> OpCodeLines { get; } = new List<OpCodeLine>();
         public List<PropertyLine> PropertyLines { get; } = new List<PropertyLine>();
+        public List<ResponseLine> ResponseLines { get; } = new List<ResponseLine>();
 
         public VersionLine VersionLine { get; private set; }
 
@@ -158,6 +159,12 @@ namespace CBUS.Bifrost
                     .Where(n => !(n is OpCodeReservedLine))
                     .Select(n => n.Value)
                     .Distinct());
+
+            this.ResponseLines.Clear();
+            this.ResponseLines.AddRange(
+                lines
+                    .Select(n => n.Value as ResponseLine)
+                    .Where(n => n != null));
         }
 
         private string ReadEmbeddedFile(string name)

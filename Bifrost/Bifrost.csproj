@@ -54,6 +54,7 @@
     <Compile Include="ModelBuilder\LicenceBlock.cs" />
     <Compile Include="ModelBuilder\OpCodeBlock.cs" />
     <Compile Include="ModelBuilder\OpCodeProperty.cs" />
+    <Compile Include="ModelBuilder\ResponseBlock.cs" />
     <Compile Include="ModelLoader\BlankLine.cs" />
     <Compile Include="ModelLoader\CommentLine.cs" />
     <Compile Include="ModelLoader\EnumerationLine.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ModelLoader\OpCodeToStringLine.cs" />
     <Compile Include="ModelLoader\OpCodeValueLine.cs" />
     <Compile Include="ModelLoader\PropertyLine.cs" />
+    <Compile Include="ModelLoader\ResponseLine.cs" />
     <Compile Include="ModelLoader\VersionLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

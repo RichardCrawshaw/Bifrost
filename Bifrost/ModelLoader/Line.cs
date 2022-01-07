@@ -55,6 +55,9 @@
             if (text.Trim().StartsWith("property,"))
                 return PropertyLine.Create(number, text);
 
+            if (text.Trim().StartsWith("responses,"))
+                return ResponseLine.Create(number, text);
+
             if (text.Trim().StartsWith("Version,"))
                 return VersionLine.Create(number, text);
 

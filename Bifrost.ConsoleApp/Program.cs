@@ -20,9 +20,9 @@ namespace CBUS.Bifrost
             foreach(var item in builder.OpCodeBaseAbstractClassSuffixes)
                 Console.WriteLine(item.ToString());
 
-            foreach(var item in builder.OpCodeBlocks)
+            foreach(var item in builder.ResponseBlocks)
             {
-                Console.WriteLine(item.Code);
+                Console.WriteLine(item.ToString());
             }
 
             Console.ReadLine();
