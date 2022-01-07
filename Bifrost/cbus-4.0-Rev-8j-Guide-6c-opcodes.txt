@@ -41,6 +41,11 @@
 #						These are referenced by the 'property' lines, where they define which enum to use.
 #	*	Version		Denotes a single version string that should uniquely identify the CBUS version that this file reflects.
 #					If there are multiple Version lines then the file should be considered invalid.
+#	*	responses:	Defines the relationship between op-codes, specifically which are responses to others.
+#					Format: "responses",request-opcode,response-opcode,type,comment
+#					The "request-opcode" is the opcode that is send and the "response-opcode" is the one that is returned.
+#					"type" is either "normal" for most situations, or "error" for those responses that indicate an error situation.
+#					"comment" is some explanatory text that will be added as a comment to the generated code.
 
 # Licence
 # "Licence",text
@@ -620,7 +625,7 @@ opcode,0x99,property,12,NodeNumber
 opcode,0x99,property,34,DeviceNumber
 !opcode,0x99,tostring,"{Number}: {NodeNumber} {DeviceNumber}"
 
-opcode,0x9A,values,"ASRQ","Accessory Short Request",3,Accessory
+opcode,0x9A,values,"ASRQ","Accessory Short Request Event",3,Accessory
 opcode,0x9A,description,"Indicates a ‘request’ event using the short event number of 2 LS bytes. A request event is used to elicit a response from a producer ‘device’ when it is required to know the ‘state’ of the device without producing an ON or OFF event and to trigger an event from a “combi” node."
 opcode,0x9A,property,12,NodeNumber
 opcode,0x9A,property,34,DeviceNumber
@@ -1330,3 +1335,44 @@ enumeration,WeekdayEnum,0x05,Thu,"Thursday"
 enumeration,WeekdayEnum,0x06,Fri,"Friday"
 enumeration,WeekdayEnum,0x07,Sat,"Saturday"
 // Used by: 0xCF FCLK
+
+# "responses",request-opcode,response-opcode,type,comment
+responses,RSTAT,STAT,normal,Query status of command station -> Command station status report
+responses,QNN,PNN,normal,Query node status -> node
+responses,RQNP,PARAMS,normal,Request node parameters -> node parameters
+responses,RQMN,NAME,normal,Request module name -> node name
+responses,QLOC,PLOC,normal,Query engine  -> engine report
+responses,QLOC,ERR,error,Query engine  -> command station error report
+responses,RLOC,PLOC,normal,Request engine session  -> engine report
+responses,RLOC,ERR,error,Request engine session  -> command station error report
+responses,QCON,PLOC,normal,Query consist -> engine report
+responses,QCON,ERR,error,Query consist -> command station error report
+responses,RQNN,SNN,normal,Request node number -> set node number
+responses,SNN,NNACK,normal,Set node number -> node number acknowledgement
+responses,NNEVN,EVNLF,normal,Read number of events available -> event space left
+responses,NERD,ENRSP,normal,Read back all events in a node -> node events
+responses,RQEVN,NUMEV,normal,Read back all events in a node -> number of events stored
+responses,RQDAT,ARDAT,normal,Request node data event -> accessory node data
+responses,RQDDS,DDRS,normal,Request device data -> device data
+responses,NVRD,NVANS,normal,Request read of node variable -> node variable value
+responses,NENRD,ENRSP,normal,Request read of events by index -> node events
+responses,RQNPN,PARAN,normal,Request read of node parameter by index -> individual node parameter
+responses,QCVS,PCVS,normal,Request read CV (service mode) -> report CV
+responses,AREQ,ARON,normal,Accessory status request (long) -> accessory response ON (long)
+responses,AREQ,AROF,normal,Accessory status request (long) -> accessory response OFF (long)
+responses,REVAL,NEVAL,normal,Request read of event variable -> event variable value
+responses,ASRQ,ARSON,normal,Accessory status request (short) -> accessory response ON (short)
+responses,ASRQ,ARSOF,normal,Accessory status request (short) -> accessory response ON (short)
+responses,REQEV,EVANS,normal,Read event variable in learn mode -> event variable value (learn mode)
+responses,AREQ,ARON1,normal,Accessory status request (long) -> accessory response event ON with one added byte (long)
+responses,AREQ,AROF1,normal,Accessory status request (long) -> accessory response event OFF with one added byte (long)
+responses,ASRQ,ARSON1,normal,Accessory status request (short) -> accessory response ON with one added data byte (short)
+responses,ASRQ,ARSOF1,normal,Accessory status request (short) -> accessory response OFF with one added data byte (short)
+responses,AREQ,ARON2,normal,Accessory status request (long) -> accessory response event ON with two added bytes (long)
+responses,AREQ,AROF2,normal,Accessory status request (long) -> accessory response event OFF with two added bytes (long)
+responses,ASRQ,ARSON2,normal,Accessory status request (short) -> accessory response ON with two added data bytes (short)
+responses,ASRQ,ARSOF2,normal,Accessory status request (short) -> accessory response OFF with two added data bytes (short)
+responses,AREQ,ARON3,normal,Accessory status request (long) -> accessory response event ON with three added bytes (long)
+responses,AREQ,AROF3,normal,Accessory status request (long) -> accessory response event OFF with three added bytes (long)
+responses,ASRQ,ARSON3,normal,Accessory status request (short) -> accessory response ON with three added data bytes (short)
+responses,ASRQ,ARSOF3,normal,Accessory status request (short) -> accessory response OFF with three added data bytes (short)
