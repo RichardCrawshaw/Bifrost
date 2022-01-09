@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CBUS.Bifrost
 {
@@ -17,12 +18,17 @@ namespace CBUS.Bifrost
             //Console.WriteLine(builder.HistoryBlock.Text);
             //Console.WriteLine(builder.LicenceBlock.Text);
 
-            foreach(var item in builder.OpCodeBaseAbstractClassSuffixes)
-                Console.WriteLine(item.ToString());
+            //foreach(var item in builder.OpCodeBaseAbstractClassSuffixes)
+            //    Console.WriteLine(item.ToString());
 
-            foreach(var item in builder.ResponseBlocks)
+            //foreach(var item in builder.ResponseBlocks)
+            //    Console.WriteLine(item.ToString());
+
+            foreach (var group in builder.OpCodeBlocks.Select(n => n.Group).Distinct().OrderBy(n => n))
             {
-                Console.WriteLine(item.ToString());
+                Console.WriteLine(group);
+                foreach (var item in builder.OpCodeBlocks.Where(n => n.Group == group))
+                    Console.WriteLine($"\t{item.Name}");
             }
 
             Console.ReadLine();

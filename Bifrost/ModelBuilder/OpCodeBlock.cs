@@ -106,12 +106,25 @@ namespace CBUS.Bifrost.Model
             if (string.IsNullOrEmpty(this.ToStringText))
             {
                 sb.Clear();
-                sb.Append("{" + "this.Number" + "}");
+
+                // This produces a ToString that uses the number of the opcode followed by the data
+                // as a series of byte sized hes numbers.
+                //sb.Append("{" + "this.Number" + "}");
+                //foreach (var property in this.Properties.OrderBy(p => p.Source))
+                //{
+                //    var format = GetFormat(property);
+                //    var variable = GetValue(property);
+                //    sb.Append(" {" + variable + format + "}");
+                //}
+
+                // This produces a ToString that uses the Code of the opcode followed by the data
+                // as Property Name Value pairs.
+                sb.Append("{" + "this.Code" + "}");
                 foreach (var property in this.Properties.OrderBy(p => p.Source))
                 {
                     var format = GetFormat(property);
                     var variable = GetValue(property);
-                    sb.Append(" {" + variable + format + "}");
+                    sb.Append($" {property.Name}: {{{variable}{format}}}");
                 }
                 this.ToStringText = "\"" + sb.ToString() + "\"";
             }

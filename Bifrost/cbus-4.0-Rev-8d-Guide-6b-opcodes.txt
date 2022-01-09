@@ -236,7 +236,7 @@ opcode,0x3C,reserved
 opcode,0x3D,reserved
 opcode,0x3E,reserved
 
-opcode,0x3F,values,EXTC,Extended opcode with no additional bytes,3,General
+opcode,0x3F,values,EXTC,Extended opcode with no data bytes,3,General
 opcode,0x3F,description,"Used if the basic set of 32 OPCs is not enough. Allows an additional 256 opcodes."
 opcode,0x3F,property,1,ExtendedOpCode
 !opcode,0x3F,tostring,"{Number}: 0x{ExtendedOpCode:X2}"
@@ -401,7 +401,7 @@ opcode,0x5D,property,12,NodeNumber
 
 opcode,0x5E,reserved
 
-opcode,0x5F,values,"EXTC1","Extended opcode with 1 additional byte",3,General
+opcode,0x5F,values,"EXTC1","Extended opcode with 1 data byte",3,General
 opcode,0x5F,description,"Used if the basic set of 32 OPCs is not enough. Allows an additional 256 OPCs."
 opcode,0x5F,property,1,ExtendedOpCode
 opcode,0x5F,property,2,Data1
@@ -500,7 +500,7 @@ opcode,0x7C,reserved
 opcode,0x7D,reserved
 opcode,0x7E,reserved
 
-opcode,0x7F,values,"EXTC2","Extended opcode with 2 additional bytes",3,General
+opcode,0x7F,values,"EXTC2","Extended opcode with 2 data bytes",3,General
 opcode,0x7F,description,"Used if the basic set of 32 OPCs is not enough. Allows an additional 256 opcodes."
 opcode,0x7F,property,1,ExtendedOpCode
 opcode,0x7F,property,2,Data1
@@ -531,7 +531,7 @@ opcode,0x82,property,23,CV
 opcode,0x82,property,4,Value
 !opcode,0x82,tostring,"{Number}: {Session} {CV} {Value}"
 
-opcode,0x83,values,"WCVB","Write CB (bit) in OPS mode",2,DCC
+opcode,0x83,values,"WCVB","Write CV (bit) in OPS mode",2,DCC
 opcode,0x83,description,"Sent to the command station to write a DCC CV in OPS mode to specific loco.(on the main)."
 opcode,0x83,property,1,Session
 opcode,0x83,property,23,CV
@@ -657,7 +657,7 @@ opcode,0x9E,property,12,NodeNumber
 opcode,0x9E,property,34,DeviceNumber
 !opcode,0x9E,tostring,"{Number}: {NodeNumber} {DeviceNumber}"
 
-opcode,0x9F,values,"EXTC3","Extended opcode with 3 additional bytes",3,General
+opcode,0x9F,values,"EXTC3","Extended opcode with 3 data bytes",3,General
 opcode,0x9F,description,"Used if the basic set of 32 OPCs is not enough. Allows an additional 256 opcodes."
 opcode,0x9F,property,1,ExtendedOpCode
 opcode,0x9F,property,2,Data1
@@ -1148,7 +1148,7 @@ opcode,0xFE,property,6,Data2
 opcode,0xFE,property,7,Data3
 !opcode,0xFE,tostring,"{Number}: {NodeNumber} {DeviceNumber} {Data1} {Data2} {Data3}"
 
-opcode,0xFF,values,"EXTC6","Extended opcode with 6 da bytes",3,General
+opcode,0xFF,values,"EXTC6","Extended opcode with 6 data bytes",3,General
 opcode,0xFF,description,"Used if the basic set of 32 OPCs is not enough. Allows an additional 256 opcodes."
 opcode,0xFF,property,1,ExtendedOpCode
 opcode,0xFF,property,2,Data1
