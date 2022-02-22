@@ -1,8 +1,9 @@
 # CBUS OpCodes
-# Source: Developers' Guide for CBUS version 6b
+# Source: Developers' Guide for CBUS version 6c
 # File created: 2012-11-06 (6 November 2021)
 # Author: Richard Crawshaw
 #
+# Blank lines are ignored.
 # Lines starting with hash, semi-colon, exclamation mark (bang) or double forward slash, double dash (#;!//--) are comments and are ignored.
 #
 # Lines other than comments have a prefix word that indicates the overall format and function of the line.
@@ -43,9 +44,14 @@
 #					If there are multiple Version lines then the file should be considered invalid.
 #	*	responses:	Defines the relationship between op-codes, specifically which are responses to others.
 #					Format: "responses",request-opcode,response-opcode,type,comment
-#					The "request-opcode" is the opcode that is send and the "response-opcode" is the one that is returned.
+#					The "request-opcode" is the opcode that is sent and the "response-opcode" is the one that is returned.
 #					"type" is either "normal" for most situations, or "error" for those responses that indicate an error situation.
 #					"comment" is some explanatory text that will be added as a comment to the generated code.
+#	*	NodeNumbers:	Defines fixed individual node numbers and reserved node number ranges.
+#		-	individual:	Defines a fixed individual node number.
+#						Format: "NodeNumbers","individual",Number (hex),Module Name
+#		-	range:		Defines a range of node numbers.
+#						Format: "NodeNumbers","range",Start (hex),Finish (hex),Description
 
 # Licence
 # "Licence",text
@@ -82,6 +88,7 @@ Licence,  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITN
 # History
 # "History",date(y-m-d),author,text
 History,2021-11-06,Richard Crawshaw,Original from Developers' Guide for CBUS version 6b
+History,2022-02-20,Richard Crawshaw,Updated from Developers' Guide for CBUS version 6c Draft 5: https://github.com/cbus-traincontrol/cbus-traincontrol.github.io/blob/main/CBUS%20Developers%20Guide%206c.pdf
 
 # Comments
 # Use this section to add comments to the top of the generated file.
@@ -90,7 +97,7 @@ History,2021-11-06,Richard Crawshaw,Original from Developers' Guide for CBUS ver
 # Version
 # Specify the version of the CBUS spec to which this file corresponds.
 # "Version",text
-Version,CBUS 4.0 Specification Rev. 8j Guide 6c
+Version,CBUS 4.0 Specification Rev. 8j Guide 6c Draft 5
 
 # OpCodes
 # "opcode",Value (hex),"values",Code,Name,Priority,Group
@@ -327,7 +334,11 @@ opcode,0x4C,property,2,SessionStatus
 
 opcode,0x4D,reserved
 opcode,0x4E,reserved
-opcode,0x4F,reserved
+
+opcode,0x4F,values,"NNRSM","Reset to manufacturers defaults",3,Config
+opcode,0x4F,description,"Causes the module to reset settings to manufacturers defaults. The module should retain any node number and remain in FLiM mode. What the manufacturers defaults are will be defined for each module, but should be equivalent to putting a new module into FLiM, with no events taught, only default events defined (if any) and all Nvs returned to their default values."
+opcode,0x4F,property,12,NodeNumber
+!opcode,0x4F,tostring,"{Number}: {NodeNumber}"
 
 opcode,0x50,values,"RQNN","Request node number",3,Config
 opcode,0x50,description,"Sent by a node that is in setup/configuration mode and requests assignment of a node number (NN). The node allocating node numbers responds with (SNN) which contains the newly assigned node number. <NN hi> and <NN lo> are the existing node number, if the node has one. If it does not yet have a node number, these bytes should be set to zero."
@@ -399,7 +410,10 @@ opcode,0x5D,description,"For nodes in FLiM using CAN as transport. This OPC will
 opcode,0x5D,property,12,NodeNumber
 !opcode,0x5D,tostring,"{Number}: {NodeNumber}"
 
-opcode,0x5E,reserved
+opcode,0x5E,values,"NNRST","Restart node",3,Config
+opcode,0x5E,description,"Causes module to carry out a software reset to restart the firmware. No settings are affected."
+opcode,0x5E,property,12,NodeNumber
+!opcode,0x5E,tostring,"{Number}: {NodeNumber}"
 
 opcode,0x5F,values,"EXTC1","Extended opcode with 1 data byte",3,General
 opcode,0x5F,description,"Used if the basic set of 32 OPCs is not enough. Allows an additional 256 OPCs."
@@ -824,7 +838,15 @@ opcode,0xC1,property,5,Mode
 opcode,0xC1,property,6,Value
 !opcode,0xC1,tostring,"{Number}: {Address} {CV} {Mode} {Value}"
 
-opcode,0xC2,reserved
+opcode,0xC2,values,"CABDAT","Cab Data",2,DCC
+opcode,0xC2,description,"Transmitted by a layout control system to send data to a cab controlling a specific loco."
+opcode,0xC2,property,12,Address
+opcode,0xC2,property,3,datcode
+opcode,0xC2,property,4,Aspect1
+opcode,0xC2,property,5,Aspect2
+opcode,0xC2,property,6,Speed
+opcode,0xC2,tostring,"{Number}: {Address} {datcode} {Aspect1} {Aspect2} {Speed}"
+
 opcode,0xC3,reserved
 opcode,0xC4,reserved
 opcode,0xC5,reserved
@@ -1163,6 +1185,8 @@ opcode,0xFF,property,7,Data6
 property,AccErrorCode,AccErrorCodeEnum,Enum
 property,Address,ushort,decimal
 property,AllocationCode,byte,decimal
+property,Aspect1,byte,hex
+property,Aspect2,byte,hex
 property,Build,byte,decimal
 property,CAN_ID,byte,decimal
 property,CSFlags,CSFlagsEnum,Enum
@@ -1182,6 +1206,7 @@ property,Data3,byte,hex
 property,Data4,byte,hex
 property,Data5,byte,hex
 property,Data6,byte,hex
+property,datcode,CabDatEnum,Enum
 property,DccErrorCode,DccErrorCodeEnum,Enum
 property,DebugStatus,byte,hex
 property,DeviceNumber,ushort,decimal
@@ -1226,6 +1251,7 @@ property,Session,byte,decimal
 property,SessionStatus,SessionStatusEnum,Enum
 property,SessionFlags,SessionFlagsEnum,Enum
 property,SoundMode,bool,On|Off
+property,Speed,byte,hex
 property,SpeedDir,byte,decimal
 property,SpeedMode,SpeedModeEnum,Enum
 property,Status,byte,decimal
@@ -1247,6 +1273,10 @@ enumeration,AccErrorCodeEnum,0x0A,InvalidNodeVariableIndex,"Invalid Node Variabl
 enumeration,AccErrorCodeEnum,0x0B,InvalidEventVariableValue,"Invalid Event Variable Value",
 enumeration,AccErrorCodeEnum,0x0C,InvalidNodeFariableValue,"Invalid Node Variable Value",
 // Used by: 0x6F CMDERR
+
+enumeration,CabDatEnum,0x00,Undefined,"System undefined"
+enumeration,CabDatEnum,0x01,CABSIG,"Transmitted by a layout control system to send signal aspects to be displayed on a cab handset as cab signalling"
+// Used by: 0xC1 CABDAT
 
 enumeration,CSFlagsEnum,0,HardwareError,"Hardware error"
 enumeration,CSFlagsEnum,1,TrackError,"Track error"
@@ -1376,3 +1406,11 @@ responses,AREQ,ARON3,normal,Accessory status request (long) -> accessory respons
 responses,AREQ,AROF3,normal,Accessory status request (long) -> accessory response event OFF with three added bytes (long)
 responses,ASRQ,ARSON3,normal,Accessory status request (short) -> accessory response ON with three added data bytes (short)
 responses,ASRQ,ARSOF3,normal,Accessory status request (short) -> accessory response OFF with three added data bytes (short)
+
+# NodeNumbers
+# "NodeNumbers","individual",Number (hex),Module Name
+# "NodeNumbers","range",Start (hex),Finish (hex),Description
+NodeNumbers,individual,0xFFFC,"CANUSB"
+NodeNumbers,individual,0xFFFE,"CANCMD"
+NodeNumbers,individual,0xFFFF,"CANCAB"
+NodeNumbers,range,0xFFF0,0xFFFF,"Modules with a fixed default Node Number."

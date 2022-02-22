@@ -52,6 +52,7 @@
     <Compile Include="ModelBuilder\FileCommentBlock.cs" />
     <Compile Include="ModelBuilder\HistoryBlock.cs" />
     <Compile Include="ModelBuilder\LicenceBlock.cs" />
+    <Compile Include="ModelBuilder\NodeNumbersBlock.cs" />
     <Compile Include="ModelBuilder\OpCodeBlock.cs" />
     <Compile Include="ModelBuilder\OpCodeProperty.cs" />
     <Compile Include="ModelBuilder\ResponseBlock.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="ModelLoader\HistoryLine.cs" />
     <Compile Include="ModelLoader\LicenceLine.cs" />
     <Compile Include="ModelLoader\Line.cs" />
+    <Compile Include="ModelLoader\NodeNumbersLine.cs" />
     <Compile Include="ModelLoader\OpCodeCommentLine.cs" />
     <Compile Include="ModelLoader\OpCodeDescriptionLine.cs" />
     <Compile Include="ModelLoader\OpCodeLine.cs" />

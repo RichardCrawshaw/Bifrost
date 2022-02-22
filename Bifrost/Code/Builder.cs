@@ -24,6 +24,10 @@ namespace CBUS.Bifrost
 
         public string Version { get; private set; }
 
+        public List<NodeNumbersIndividualBlock> NodeNumbersIndividualBlocks { get; } = new List<NodeNumbersIndividualBlock>();
+
+        public List<NodeNumbersRangeBlock> NodeNumbersRangeBlocks { get; } = new List<NodeNumbersRangeBlock>();
+
         #endregion
 
         #region Constructors
@@ -62,6 +66,16 @@ namespace CBUS.Bifrost
                     .Distinct());
 
             this.Version = this.loader.VersionLine?.Text;
+
+            this.NodeNumbersIndividualBlocks.Clear();
+            this.NodeNumbersIndividualBlocks.AddRange(
+                this.loader.NodeNumbersIndividualLines
+                    .Select(n => NodeNumbersIndividualBlock.Create(n)));
+
+            this.NodeNumbersRangeBlocks.Clear();
+            this.NodeNumbersRangeBlocks.AddRange(
+                this.loader.NodeNumbersRangeLines
+                    .Select(n => NodeNumbersRangeBlock.Create(n)));
         }
 
         #endregion

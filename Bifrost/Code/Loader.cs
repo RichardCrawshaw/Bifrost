@@ -35,6 +35,9 @@ namespace CBUS.Bifrost
         public List<byte> OpCodeNumbers { get; } = new List<byte>();
         public List<string> EnumerationNames { get; } = new List<string>();
 
+        public List<NodeNumbersIndividualLine> NodeNumbersIndividualLines { get; } = new List<NodeNumbersIndividualLine>();
+        public List<NodeNumbersRangeLine> NodeNumbersRangeLines { get; } = new List<NodeNumbersRangeLine>();
+
         public static List<string> VersionNames => resourceNames.Value;
 
         #endregion
@@ -164,6 +167,18 @@ namespace CBUS.Bifrost
             this.ResponseLines.AddRange(
                 lines
                     .Select(n => n.Value as ResponseLine)
+                    .Where(n => n != null));
+
+            this.NodeNumbersIndividualLines.Clear();
+            this.NodeNumbersIndividualLines.AddRange(
+                lines
+                    .Select(n => n.Value as NodeNumbersIndividualLine)
+                    .Where(n => n != null));
+
+            this.NodeNumbersRangeLines.Clear();
+            this.NodeNumbersRangeLines.AddRange(
+                lines
+                    .Select(n => n.Value as NodeNumbersRangeLine)
                     .Where(n => n != null));
         }
 

@@ -61,6 +61,12 @@
             if (text.Trim().StartsWith("Version,"))
                 return VersionLine.Create(number, text);
 
+            if (text.Trim().StartsWith("NodeNumbers,individual,"))
+                return NodeNumbersIndividualLine.Create(number, text);
+
+            if (text.Trim().StartsWith("NodeNumbers,range,"))
+                return NodeNumbersRangeLine.Create(number,text);
+
             return null;
         }
 
