@@ -542,7 +542,7 @@ opcode,0x84,values,"QCVS","Read CV",2,DCC
 opcode,0x84,description,"This command is used exclusively with service mode. Sent by the cab to the command station in order to read a CV value. The command station shall respond with a PCVS message containing the value read, or SSTAT if the CV cannot be read."
 opcode,0x84,property,1,Session
 opcode,0x84,property,23,CV
-opcode,0x84,property,4,Mode
+opcode,0x84,property,4,ServiceMode
 !opcode,0x84,tostring,"{Number}: {Session} {CV} {Mode}"
 
 opcode,0x85,values,"PCVS","Report CV",2,DCC
@@ -1358,6 +1358,7 @@ responses,NVRD,NVANS,normal,Request read of node variable -> node variable value
 responses,NENRD,ENRSP,normal,Request read of events by index -> node events
 responses,RQNPN,PARAN,normal,Request read of node parameter by index -> individual node parameter
 responses,QCVS,PCVS,normal,Request read CV (service mode) -> report CV
+responses,QCVS,SSTAT,error,Request read CV (service mode) -> report CV error
 responses,AREQ,ARON,normal,Accessory status request (long) -> accessory response ON (long)
 responses,AREQ,AROF,normal,Accessory status request (long) -> accessory response OFF (long)
 responses,REVAL,NEVAL,normal,Request read of event variable -> event variable value
