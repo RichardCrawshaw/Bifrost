@@ -1345,6 +1345,8 @@ responses,QLOC,PLOC,normal,Query engine  -> engine report
 responses,QLOC,ERR,error,Query engine  -> command station error report
 responses,RLOC,PLOC,normal,Request engine session  -> engine report
 responses,RLOC,ERR,error,Request engine session  -> command station error report
+responses,GLOC,PLOC,normal,Get engine session -> engine report
+responses,GLOC,ERR,error,Get engine session -> command station error report
 responses,QCON,PLOC,normal,Query consist -> engine report
 responses,QCON,ERR,error,Query consist -> command station error report
 responses,RQNN,SNN,normal,Request node number -> set node number
